@@ -23,10 +23,17 @@ const Predict = () => {
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      setLoading(false);
-      setDate(response['data']['Date']);
-      setSales(response['data']['Sales']);
-      setUploaded(true);
+      if (response['data']['status'] && response['data']['status'] === 'fail') {
+        alert(
+          'Failed to make prediction. Please make sure your file fullfill the requirements and try again.'
+        );
+        setLoading(false);
+      } else {
+        setLoading(false);
+        setDate(response['data']['Date']);
+        setSales(response['data']['Sales']);
+        setUploaded(true);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -76,7 +83,7 @@ const Predict = () => {
             <b>DayOfWeek</b> - the Date of the week (0 - 6)
           </li>
         </ul>
-
+        <h3>Predict</h3>
         <form onSubmit={handleSubmit}>
           <input type="file" onChange={handleFileSelect} />
           <input type="submit" value="Upload File" />
