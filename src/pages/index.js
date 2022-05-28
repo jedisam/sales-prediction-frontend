@@ -13,6 +13,9 @@ const Home = () => {
           width="90%"
           alt="sales"
         />
+        <h3 style={{ margin: '1rem' }}>
+          Predict Sales of your stores ahead of time!
+        </h3>
       </div>
     </Fragment>
   );
